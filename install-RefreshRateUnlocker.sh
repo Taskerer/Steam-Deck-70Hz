@@ -5,16 +5,15 @@ GREEN='\033[0;32m'
 
 clear
 
-echo Refresh Rate Unlocker Script by ryanrudolf
-echo Discord user dan2wik for the idea on overclocking the display panel to 70Hz
-echo https://github.com/ryanrudolfoba/SteamDeck-RefreshRateUnlocker
+echo Steam Deck 70Hz Script by biddbb
+echo https://github.com/Taskerer/Steam-Deck-70Hz
 sleep 2
 
 # Password sanity check - make sure sudo password is already set by end user!
 
 if [ "$(passwd --status deck | tr -s " " | cut -d " " -f 2)" == "P" ]
 then
-	read -s -p "Please enter current sudo password: " current_password ; echo
+	read -s -p "Введите текущий пароль sudo: " current_password ; echo
 	echo Checking if the sudo password is correct.
 	echo -e "$current_password\n" | sudo -S -k ls &> /dev/null
 
@@ -43,16 +42,16 @@ fi
 
 ###### Main menu. Ask user for the preferred refresh rate limit
 
-Choice=$(zenity --width 700 --height 300 --list --radiolist --multiple --title "Refresh Rate Unlocker - https://github.com/ryanrudolfoba/SteamOS-RefreshRateUnlocker"\
+Choice=$(zenity --width 700 --height 300 --list --radiolist --multiple --title "Steam Deck 70Hz - https://github.com/Taskerer/Steam-Deck-70Hz"\
 	--column "Select One" \
-	--column "Refresh Rate Limit" \
+	--column "Ограничение частоты обновления" \
 	--column="Description - Read this carefully!"\
-	FALSE 20,60 "Set the refresh rate limit to 20Hz - 60Hz."\
-	FALSE 30,60 "Set the refresh rate limit to 30Hz - 60Hz."\
-	FALSE 20,70 "Set the refresh rate limit to 20Hz - 70Hz."\
-	FALSE 30,70 "Set the refresh rate limit to 30Hz - 70Hz."\
-	FALSE 40,70 "Set the refresh rate limit to 40Hz - 70Hz."\
-	TRUE EXIT "Don't make any changes and exit immediately.")
+	FALSE 20,60 "Установите ограничение частоты обновления на 20Hz - 60Hz."\
+	FALSE 30,60 "Установите ограничение частоты обновления на 30Hz - 60Hz."\
+	FALSE 20,70 "Установите ограничение частоты обновления на 20Hz - 70Hz."\
+	FALSE 30,70 "Установите ограничение частоты обновления на 30Hz - 70Hz."\
+	FALSE 40,70 "Установите ограничение частоты обновления на 40Hz - 70Hz."\
+	TRUE EXIT "Не вносить никаких изменений и сразу же выйти.")
 
 if [ $? -eq 1 ] || [ "$Choice" == "EXIT" ]
 then
